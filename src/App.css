@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* FONTS  */
+@font-face { 
+  font-family: "Moderniz";
+  src: local("Moderniz"), 
+    url("./fonts/Moderniz.otf") format("opentype");
+}
+
+@font-face { 
+  font-family: "Rota-Extra-Bold";
+  src: local("Rota-Extra-Bold"), 
+    url("./fonts/Rota-Extra-Bold.otf") format("opentype");
+}
+
+@font-face { 
+  font-family: "Rota-Bold";
+  src: local("Rota-Bold"), 
+    url("./fonts/Rota-Bold.otf") format("opentype");
+}
+
+/* BUTTON  */
+.button{
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rota-Extra-Bold";
+  text-transform: capitalize;
+  padding-top: 2px;
+}
+
+.light{
+  background-color: #D9D9D9;
+  color: #2D2D2D;
+}
+
+.dark{
+  background-color: #555555;
+  color: #D9D9D9;
+}

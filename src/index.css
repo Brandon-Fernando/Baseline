@@ -1,0 +1,16 @@
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: url("/bg_court.svg") right top / 80% auto no-repeat;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background-color: #2D2D2D;
+}
