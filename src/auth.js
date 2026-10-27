@@ -2,11 +2,10 @@ import {
   signInWithRedirect,
   signOut,
   getCurrentUser,
-  signUp, 
-  confirmSignUp
+  signUp,
+  confirmSignUp,
 } from "aws-amplify/auth";
 
-// Opens Cognito's login page, which includes a sign-up link.
 export function login() {
   return signInWithRedirect();
 }
@@ -23,19 +22,30 @@ export function getUser() {
   return getCurrentUser();
 }
 
-export function registerWithEmail(email, password) {
+export function registerWithEmail(
+  email,
+  password,
+  firstName,
+  lastName
+) {
   return signUp({
-    username: email,
+    username: email.trim(),
     password,
     options: {
-      userAttributes: { email },
+      userAttributes: {
+        email: email.trim(),
+        given_name: firstName.trim(),
+        family_name: lastName.trim(),
+      },
+      // The form explicitly signs in after confirmation.
+      autoSignIn: false,
     },
   });
 }
 
 export function verifyEmail(email, code) {
   return confirmSignUp({
-    username: email,
-    confirmationCode: code,
+    username: email.trim(),
+    confirmationCode: code.trim(),
   });
 }

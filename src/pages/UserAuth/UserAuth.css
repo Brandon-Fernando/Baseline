@@ -112,6 +112,10 @@
   gap: 0.5rem;
 }
 
+.auth-button{
+  margin-top: 1rem;
+}
+
 .divide-wrapper{
   display: flex;
   width: 100%;
