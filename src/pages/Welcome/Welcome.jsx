@@ -21,7 +21,7 @@ const navigate = useNavigate();
       <div className="welcome-buttons">
         <motion.button
           whileTap={{ scale: 0.94 }}
-          onClick={delayed(() => navigate("/dashboard"))}
+          onClick={delayed(() => navigate("/sign-in"))}
           className="sign-in button light"
         >
           Sign in 
