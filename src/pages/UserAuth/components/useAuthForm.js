@@ -215,9 +215,8 @@ const useAuthForm = () => {
     });
   };
 
-  const handleCodeChange = (event) => {
-    setCode(event.target.value);
-    setError("");
+  const handleCodeChange = (value) => {
+    setCode(value);
   };
 
   const handleBack = () => {

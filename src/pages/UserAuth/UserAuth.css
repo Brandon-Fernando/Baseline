@@ -156,3 +156,34 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+
+/* VERIFICATION CODE  */
+.verify-title{
+  font-family: "Rota-Bold";
+  color: #d9d9d9;
+}
+.verification-code{
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.verification-code input{
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  height: 3rem;
+  border-radius: 10px;
+  background-color: #393939;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Rota-Extra-Bold";
+  color: #d9d9d9;
+}

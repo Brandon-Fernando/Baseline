@@ -25,3 +25,10 @@ export const CREATE_FIELDS = [
     icon: "fa-solid fa-lock"
   }
 ]
+
+export const SIGN_IN_FIELDS = [
+  {
+    field: "email", 
+    
+  }
+]
