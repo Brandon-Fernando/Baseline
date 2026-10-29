@@ -3,6 +3,7 @@ import {
   getCurrentUser,
   fetchUserAttributes,
 } from "aws-amplify/auth";
+import { useNavigate } from "react-router-dom";
 
 function checkErrors(errors) {
   if (errors?.length) {
@@ -65,6 +66,8 @@ export async function saveUserProfile({ firstName, lastName }) {
 // Replaces the current user's favorite teams with the supplied list.
 // An empty array clears all favorites.
 export async function saveFavoriteTeams(favoriteTeams) {
+  const navigate = useNavigate();
+
   // Ensure the input is an array of non-empty strings.
   if (
     !Array.isArray(favoriteTeams) ||
@@ -115,6 +118,8 @@ export async function saveFavoriteTeams(favoriteTeams) {
   if (!result.data) {
     throw new Error("Your favorite teams could not be saved.");
   }
+
+  navigate("/home")
 
   return result.data;
 }
