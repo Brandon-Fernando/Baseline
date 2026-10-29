@@ -4,6 +4,7 @@ import Welcome from './pages/Welcome/Welcome'
 import CreateAccount from './pages/UserAuth/CreateAccount'
 import Home from './pages/Home/Home'
 import SignIn from './pages/UserAuth/SignIn'
+import FavoriteTeam from './pages/FavoriteTeam/FavoriteTeam'
 
 function App() {
 
@@ -16,6 +17,8 @@ function App() {
       <Route path="/sign-in" element={<SignIn />}/>
 
       <Route path="/home" element={<Home />}/>
+
+      <Route path="favorite-team" element={<FavoriteTeam />}/>
     </Routes>
   )
 }

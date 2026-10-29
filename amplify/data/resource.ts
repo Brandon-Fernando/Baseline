@@ -71,6 +71,7 @@ const schema = a.schema({
       firstName: a.string().required(),
       lastName: a.string().required(),
       email: a.string().required(),
+      favoriteTeams: a.string().array()
     })
     .authorization((allow) => [allow.owner()]),
 });

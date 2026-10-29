@@ -1,0 +1,193 @@
+
+
+.fav-team-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  box-sizing: border-box;
+  padding: 2rem;
+  gap: 3rem;
+  overflow: hidden;
+}
+
+.secondary-logo{
+  width: 3rem;
+}
+
+.fav-team-content{
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fav-title{
+  font-family: "Moderniz";
+  color: #d9d9d9;
+  font-size: 1.9rem;
+  max-width: 80%;
+}
+
+/* FAV LIST  */
+.fav-list-container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding-bottom: 10rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding-top: 1rem;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 3rem
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 3rem
+  );
+}
+
+.fav-list-container {
+  scrollbar-width: none; /* Firefox */
+}
+
+.fav-list-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* .fav-list-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+} */
+
+/* .fav-list-shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    #2d2d2d,
+    rgb(45 45 45 / 0)
+  );
+} */
+
+.fav-button-wrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #393939; */
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fav-button-wrapper {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #393939;
+}
+
+.fav-team-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--team-color) 56%, transparent),
+    color-mix(in srgb, var(--team-color) 15%, transparent)
+  );
+}
+
+/* .test-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #d9d9d9;
+  left: 0;
+  border-radius: 10px;
+  z-index: 0;
+} */
+
+.fav-team-info{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fav-logo{
+  height: 30px;
+  width: 30px;
+}
+
+.fav-team-name{
+  font-family: "Moderniz";
+  color: #d9d9d9;
+  font-size: 10px;
+}
+
+.fav-toggle{
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  border: 2px solid rgba(217, 217, 217, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-toggle-selected{
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #d9d9d9;
+}
+
+.footer-button-container {
+  position: fixed;
+  bottom: -1px;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  padding: 1rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: #2d2d2d;
+}
+
+.footer-button-container::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgb(45 45 45 / 0),
+    #2d2d2d
+  );
+}

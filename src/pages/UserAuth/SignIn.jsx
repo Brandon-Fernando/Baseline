@@ -16,7 +16,7 @@ const SignIn = () => {
       <div className="user-auth-content">
         <span className="user-auth-title">welcome back</span>
 
-        <AuthForm type={"signIn"}/>
+        <AuthForm key="signIn" type="signIn" />
       </div>
     </div>
   )

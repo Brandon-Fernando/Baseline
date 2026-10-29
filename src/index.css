@@ -6,11 +6,17 @@ body,
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: url("/bg_court.svg") right top / 80% auto no-repeat;
+  /* background: url("/bg_court.svg") right top / 80% auto no-repeat; */
 }
 
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  background-color: #2D2D2D;
+
+  background-color: #2d2d2d;
+  background-image: url("/bg_court.svg");
+  background-position: right top;
+  background-size: 80% auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

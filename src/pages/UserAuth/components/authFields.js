@@ -29,6 +29,14 @@ export const CREATE_FIELDS = [
 export const SIGN_IN_FIELDS = [
   {
     field: "email", 
-    
+    title: "Email", 
+    placeholder: "e.g. bamadebayo83@gmail.com", 
+    icon: "fa-solid fa-envelope"
+  }, 
+  {
+    field: "password", 
+    title: "Password", 
+    placeholder: "Password", 
+    icon: "fa-solid fa-lock"
   }
 ]

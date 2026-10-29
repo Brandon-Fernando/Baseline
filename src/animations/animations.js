@@ -1,3 +1,4 @@
+import { easeIn } from "framer-motion";
 
 
 export const staggerContainer = {
@@ -36,6 +37,50 @@ export const staggerChildren = {
     transition: {
       duration: 0.4, 
       ease: "easeInOut"
+    }
+  }
+}
+
+// FAVORITE TEAM 
+// export const teamSelect = {
+//   inactive: {
+//     background: "#393939",
+//   },
+
+//   active: {
+//     background: `linear-gradient(
+//       90deg,
+//       color-mix(in srgb, var(--team-color) 56%, transparent),
+//       color-mix(in srgb, var(--team-color) 15%, transparent)
+//     )`,
+//     transition: {
+//       duration: 0.5, 
+//       ease: "easeInOut"
+//     }
+//   },
+// };
+export const teamSelect = {
+  inactive: { opacity: 0 },
+  active: { opacity: 1 },
+};
+
+export const springScale = {
+  hidden: {
+    scale: 0, 
+    opacity: 0
+  }, 
+  visible: {
+    scale: 1, 
+    opacity: 1, 
+    transition: {
+      duration: 0.4
+    }
+  }, 
+  exit: {
+    scale: 0, 
+    opacity: 0, 
+    transition: {
+      duration: 0.4
     }
   }
 }

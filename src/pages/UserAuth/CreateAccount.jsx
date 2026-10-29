@@ -16,7 +16,8 @@ const CreateAccount = () => {
       <div className="user-auth-content">
         <span className="user-auth-title">let's get started</span>
 
-        <AuthForm type={"create"}/>
+        {/* <AuthForm type={"create"}/> */}
+        <AuthForm key="create" type="create" />
       </div>
     </div>
   )
