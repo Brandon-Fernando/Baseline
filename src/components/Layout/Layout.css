@@ -1,0 +1,42 @@
+.layout {
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.page-area {
+  position: relative;
+  min-height: 0;
+}
+
+.page-scroll {
+  height: 100%;
+  overflow-y: auto;
+  background: transparent;
+
+  /* The scroll container must not be masked. */
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.page-content {
+  padding: 3rem 2rem 2rem;
+}
+
+.header-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  z-index: 10;
+  pointer-events: none;
+
+  /* Match your html background exactly. */
+  background: #2d2d2d url("/bg_court.svg")
+    right top / 80% auto no-repeat fixed;
+
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}

@@ -1,0 +1,78 @@
+
+/* ===== SCORES PAGE =====  */
+.scores-page-container{
+  width: 100%;
+
+}
+
+/* FAVORITE TEAM SCORE  */
+.favorite-team-card{
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  /* height: 10rem; */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fav-team-card-gradient{
+  background: linear-gradient(to right, #C8102E, #1A64B7);
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 28%;
+
+}
+
+.fav-team-logo{
+  width: 5rem;
+  height: 5rem;
+}
+
+.team-sides{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Rota-Bold";
+  color: rgb(217 217 217 / 0.6);
+  font-size: 10px;
+}
+
+.fav-team-names{
+  margin-top: 1rem;
+}
+
+.fav-card-time{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.day-qtr{
+  font-family: "Rota-Bold";
+  color: rgb(217 217 217 / 0.6);
+  font-size: 10px;
+}
+
+.time{
+  font-family: "Rota-Extra-Bold";
+  color: #d9d9d9;
+  font-size: 13px;
+
+}
+
+.at-vs{
+  color: rgb(217 217 217 / 0.6);
+  font-family: "Rota-Bold";
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
