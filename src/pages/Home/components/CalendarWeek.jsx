@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { calendarButtons } from "../../../animations/animations";
+import { formatDate } from "../../testGames";
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-const CalendarWeek = () => {
+const CalendarWeek = ({chosenDate, onDateChange}) => {
   const [weekOffset, setWeekOffset] = useState(0);
  
 
@@ -21,7 +23,9 @@ const CalendarWeek = () => {
     return date;
   })
 
-  const [chosenDate, setChosenDate] = useState(today.toDateString())
+  // const [chosenDate, setChosenDate] = useState(today.toDateString())
+  // const [chosenMonth, setChosenMonth] = useState(months[today.getMonth()]);
+  const [year, month] = chosenDate.split("-").map(Number);
 
   return(
     <div className="week-container">
@@ -35,7 +39,8 @@ const CalendarWeek = () => {
           <i className="fa-solid fa-angle-left"/>
         </motion.button>
 
-        <span>October 2026</span>
+        {/* <span>{chosenMonth} {today.getFullYear()}</span> */
+        <span>{months[month - 1]} {year}</span>}
 
         <motion.button 
           className="toggle-week-btn"
@@ -53,9 +58,12 @@ const CalendarWeek = () => {
             className="day-button"
             key={date.toDateString()}
             variants={calendarButtons}
-            onClick={() => setChosenDate(date.toDateString())}
+            onClick={() => {
+              // setChosenDate(date.toDateString())
+               onDateChange(formatDate(date))
+            }}
             initial="inactive"
-            animate={date.toDateString() === chosenDate ? "active" : "inactive"}
+            animate={formatDate(date) === chosenDate ? "active" : "inactive"}
           >
             <span>
                {date.toLocaleDateString("en-US", { weekday: "short" })}

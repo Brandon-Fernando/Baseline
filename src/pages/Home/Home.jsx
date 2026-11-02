@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTodaysGames } from "../testGames";
+// import { getTodaysGames } from "../testGames";
 import ScoresPage from "./components/ScoresPage";
 import "./Home.css"
 import FavoriteTeam from "../FavoriteTeam/FavoriteTeam";

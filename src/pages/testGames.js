@@ -53,13 +53,13 @@ export async function testGames() {
   return result.data;
 }
 
-export async function getTodaysGames() {
+export async function getGamesByDate(date) {
   const today = new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/New_York",
   }).format(new Date());
 
   const params = new URLSearchParams({
-    "dates[]": today,
+    "dates[]": date,
     per_page: "100",
   });
 
@@ -78,4 +78,12 @@ export async function getTodaysGames() {
 
   const result = await response.json();
   return result.data;
+}
+
+export function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
