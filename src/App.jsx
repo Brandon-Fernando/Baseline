@@ -23,6 +23,8 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />}/>
       </Route>
+
+      <Route path="favorite-team" element={<FavoriteTeam />}/> 
     </Routes>
   )
 }

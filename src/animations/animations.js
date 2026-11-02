@@ -84,3 +84,19 @@ export const springScale = {
     }
   }
 }
+
+// CALENDAR BUTTONS 
+export const calendarButtons = {
+  inactive: {
+    backgroundColor: "#454545",
+    color: "#B7B7B7"
+  }, 
+  active: {
+    backgroundColor: "#656565",
+    color: "#d9d9d9", 
+    transition: {
+      duration: 0.5, 
+      ease: "easeInOut"
+    }
+  }
+}

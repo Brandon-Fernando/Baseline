@@ -2,7 +2,8 @@
 /* ===== SCORES PAGE =====  */
 .scores-page-container{
   width: 100%;
-
+  display: flex;
+  flex-direction: column;
 }
 
 /* FAVORITE TEAM SCORE  */
@@ -75,4 +76,86 @@
   left: 50%;
   top: 60%;
   transform: translate(-50%, -50%);
+}
+
+
+
+/* ===== CALENDAR WEEK =====  */
+.week-container{
+  background-color: rgba(58, 58, 58, .70);
+  margin-top: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.toggle-week-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.toggle-week-wrapper span{
+  font-family: "Rota-Extra-Bold";
+  color: #B7B7B7;
+
+}
+
+.toggle-week-btn{
+  background-color: #6A6A6A;
+  border: none;
+  outline: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d9d9d9;
+  font-size: 10px;
+}
+
+.calendar-week-wrapper{
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.day-button{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  border-radius: 50px;
+  align-items: center;
+  padding: 10px 2px;
+  font-family: "Rota-Bold";
+  font-size: 10px;
+}
+
+.calendar-week-wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  animation: week-enter 250ms ease-out;
+}
+
+@keyframes week-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .week-grid {
+    animation: none;
+  }
 }

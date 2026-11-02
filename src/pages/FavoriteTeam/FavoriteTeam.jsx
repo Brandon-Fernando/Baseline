@@ -3,12 +3,16 @@ import "./FavoriteTeam.css"
 import { motion } from "framer-motion";
 import { saveFavoriteTeams } from "../../profiles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const STORAGE_KEY = "favoriteTeams";
 
 const FavoriteTeam = () => {
   const [favTeams, setFavTeams] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [saved, setSaved] = useState(false);
+  const navigate = useNavigate();
 
   // Toggle a team in the selection.
   const handleSelect = (team) => {
@@ -27,31 +31,56 @@ const FavoriteTeam = () => {
     setSaved(false);
   };
 
-  const handleSave = async () => {
+  // const handleSave = async () => {
+  //   if (loading) return;
+
+  //   setLoading(true);
+  //   setError("");
+  //   setSaved(false);
+
+  //   try {
+  //     await saveFavoriteTeams(favTeams);
+  //     setSaved(true);
+
+  //     // Navigate to your next page here if needed.
+  //   } catch (err) {
+  //     setError(
+  //       err.message || "Your favorite teams could not be saved."
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleSave = () => {
     if (loading) return;
 
+    if (favTeams.length === 0) {
+      return;
+    }
+
     setLoading(true);
-    setError("");
-    setSaved(false);
 
-    try {
-      await saveFavoriteTeams(favTeams);
-      setSaved(true);
-
-      // Navigate to your next page here if needed.
-    } catch (err) {
-      setError(
-        err.message || "Your favorite teams could not be saved."
-      );
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(favTeams));
+      localStorage.removeItem("favoriteTeamSkipped")
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error(error);
     } finally {
       setLoading(false);
     }
-  };
+  }
 
+  const handleSkip = () => {
+    localStorage.setItem("favoriteTeamSkipped", "true");
+    navigate("/", { replace: true })
+  }
 
 
   return(
     <div className="fav-team-container">
+      <span onClick={handleSkip} className="skip">Skip</span>
 
       <img src="/Logo/Logo.png" alt="Logo" className="secondary-logo"/>
 
