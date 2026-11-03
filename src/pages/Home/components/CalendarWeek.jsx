@@ -23,6 +23,8 @@ const CalendarWeek = ({chosenDate, onDateChange}) => {
     return date;
   })
 
+  console.log(chosenDate)
+
   // const [chosenDate, setChosenDate] = useState(today.toDateString())
   // const [chosenMonth, setChosenMonth] = useState(months[today.getMonth()]);
   const [year, month] = chosenDate.split("-").map(Number);

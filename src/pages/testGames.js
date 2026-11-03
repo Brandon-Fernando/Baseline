@@ -54,9 +54,6 @@ export async function testGames() {
 }
 
 export async function getGamesByDate(date) {
-  const today = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/New_York",
-  }).format(new Date());
 
   const params = new URLSearchParams({
     "dates[]": date,

@@ -1,25 +1,100 @@
 
-const GameCard = () => (
-  <div className="game-card-container">
-    {/* HOME TEAM  */}
-    <div className="team-info">
-      <img src="/NBA-Teams/new_york_knicks.png" alt="team" className="team"/>
+const GameCard = ({game, home, away}) => {
+  function formatImg(team){
+    return team.toLowerCase().trim().replace(/\s+/g, "_");
+  }
 
-      <span>knicks</span>
+  function formatTime(time){
+    return new Date(time).toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  }
+
+  const isScheduled = game.status_state === "scheduled";
+  const isLive = game.status_state === "in_progress";
+  const isFinal = game.status_state === "final";
+  const isHalftime = game.status?.trim().toLowerCase() === "halftime";
+
+  console.log(home.home_team_score)
+
+  function getGameLabel(game) {
+    const status = game.status?.trim() || "";
+    const time = game.time?.trim() || "";
+
+    if (game.postponed) return "Postponed";
+
+    if (game.status_state === "final" || /^final/i.test(status)) {
+      return status || "Final";
+    }
+
+    if (status.toLowerCase() === "halftime") {
+      return "Halftime";
+    }
+
+    if (
+      game.status_state === "scheduled" ||
+      (!game.status_state && game.period === 0)
+    ) {
+      return game.datetime ? formatTime(game.datetime) : status;
+    }
+
+    // Append time only when it looks like a game clock.
+    // Otherwise, preserve the API's status text.
+    const hasClock = /^\d+:\d{2}(?:\.\d+)?$/.test(time);
+
+    return hasClock
+      ? `${status || "Live"} · ${time}`
+      : status || "Time unavailable";
+  }
+
+  return(
+    <div className="game-card-container">
+      {/* HOME TEAM  */}
+      <div className="team-info">
+        <img src={`/NBA-Teams/${formatImg(home.full_name)}.png`} alt="team" className="team"/>
+
+        <span>{home.name}</span>
+      </div>
+
+      {/* TIME INFO  */}
+      {/* <div className="game-card-times"> */}
+        {/* <span>{formatTime(game.datetime)}</span> */}
+
+        {/* <span>{game.status}</span> */}
+
+        {/* <span>{getGameLabel(game)}</span> */}
+
+      {/* </div> */}
+
+      <div className="score-time-container">
+        {/* HOME SCORE  */}
+        {!isScheduled && (
+          <span className="game-score">{game.home_team_score}</span>
+        )}
+
+        <div className="game-status">
+          <span className={`game-status-main ${isScheduled ? "scheduled" : ""}`}>{getGameLabel(game)}</span>
+
+          {isLive && (
+            <span className="time">{game.time}</span>
+          )}
+        </div>
+        
+
+        {/* AWAY SCORE  */}
+        {!isScheduled && (
+          <span className="game-score">{game.visitor_team_score}</span>
+        )}
+      </div>
+
+      <div className="team-info">
+        <img src={`/NBA-Teams/${formatImg(away.full_name)}.png`} alt="team" className="team"/>
+
+        <span>{away.name}</span>
+      </div>
     </div>
-
-    {/* TIME INFO  */}
-    <div className="game-card-times">
-      <span>10:00 PM</span>
-
-    </div>
-
-     <div className="team-info">
-      <img src="/NBA-Teams/philadelphia_76ers.png" alt="team" className="team"/>
-
-      <span>76ers</span>
-    </div>
-  </div>
-)
+  )
+}
 
 export default GameCard;
