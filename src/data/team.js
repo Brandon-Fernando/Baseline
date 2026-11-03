@@ -1,6 +1,6 @@
 export const teams = [
   {
-    id: "hawks",
+    id: "1",
     city: "Atlanta",
     name: "Hawks",
     abv: "ATL",
@@ -8,7 +8,7 @@ export const teams = [
     color: "#C8102E",
   },
   {
-    id: "celtics",
+    id: "2",
     city: "Boston",
     name: "Celtics",
     abv: "BOS",
@@ -16,7 +16,7 @@ export const teams = [
     color: "#007D28",
   },
   {
-    id: "nets",
+    id: "3",
     city: "Brooklyn",
     name: "Nets",
     abv: "BKN",
@@ -24,7 +24,7 @@ export const teams = [
     color: "#000000",
   },
   {
-    id: "hornets",
+    id: "4",
     city: "Charlotte",
     name: "Hornets",
     abv: "CHA",
@@ -32,7 +32,7 @@ export const teams = [
     color: "#00778C",
   },
   {
-    id: "bulls",
+    id: "5",
     city: "Chicago",
     name: "Bulls",
     abv: "CHI",
@@ -40,7 +40,7 @@ export const teams = [
     color: "#FF023F",
   },
   {
-    id: "cavaliers",
+    id: "6",
     city: "Cleveland",
     name: "Cavaliers",
     abv: "CLE",
@@ -48,7 +48,7 @@ export const teams = [
     color: "#84203B",
   },
   {
-    id: "mavericks",
+    id: "7",
     city: "Dallas",
     name: "Mavericks",
     abv: "DAL",
@@ -56,7 +56,7 @@ export const teams = [
     color: "#0064B9",
   },
   {
-    id: "nuggets",
+    id: "8",
     city: "Denver",
     name: "Nuggets",
     abv: "DEN",
@@ -64,7 +64,7 @@ export const teams = [
     color: "#001C3F",
   },
   {
-    id: "pistons",
+    id: "9",
     city: "Detroit",
     name: "Pistons",
     abv: "DET",
@@ -72,7 +72,7 @@ export const teams = [
     color: "#C8102E",
   },
   {
-    id: "warriors",
+    id: "10",
     city: "Golden State",
     name: "Warriors",
     abv: "GSW",
@@ -80,7 +80,7 @@ export const teams = [
     color: "#003E91",
   },
   {
-    id: "rockets",
+    id: "11",
     city: "Houston",
     name: "Rockets",
     abv: "HOU",
@@ -88,7 +88,7 @@ export const teams = [
     color: "#CE0E2D",
   },
   {
-    id: "pacers",
+    id: "12",
     city: "Indiana",
     name: "Pacers",
     abv: "IND",
@@ -96,15 +96,15 @@ export const teams = [
     color: "#0C2340",
   },
   {
-    id: "clippers",
+    id: "13",
     city: "Los Angeles",
     name: "Clippers",
     abv: "LAC",
-    logo: "/NBA-Teams/los_angeles_clippers.png",
+    logo: "/NBA-Teams/la_clippers.png",
     color: "#C8102E",
   },
   {
-    id: "lakers",
+    id: "14",
     city: "Los Angeles",
     name: "Lakers",
     abv: "LAL",
@@ -112,7 +112,7 @@ export const teams = [
     color: "#FFC72C",
   },
   {
-    id: "grizzlies",
+    id: "15",
     city: "Memphis",
     name: "Grizzlies",
     abv: "MEM",
@@ -120,7 +120,7 @@ export const teams = [
     color: "#4F77AC",
   },
   {
-    id: "heat",
+    id: "16",
     city: "Miami",
     name: "Heat",
     abv: "MIA",
@@ -128,7 +128,7 @@ export const teams = [
     color: "#98012E",
   },
   {
-    id: "bucks",
+    id: "17",
     city: "Milwaukee",
     name: "Bucks",
     abv: "MIL",
@@ -136,7 +136,7 @@ export const teams = [
     color: "#274E37",
   },
   {
-    id: "timberwolves",
+    id: "18",
     city: "Minnesota",
     name: "Timberwolves",
     abv: "MIN",
@@ -144,7 +144,7 @@ export const teams = [
     color: "#0C2340",
   },
   {
-    id: "pelicans",
+    id: "19",
     city: "New Orleans",
     name: "Pelicans",
     abv: "NOP",
@@ -152,7 +152,7 @@ export const teams = [
     color: "#0C2340",
   },
   {
-    id: "knicks",
+    id: "20",
     city: "New York",
     name: "Knicks",
     abv: "NYK",
@@ -160,7 +160,7 @@ export const teams = [
     color: "#FF8200",
   },
   {
-    id: "thunder",
+    id: "21",
     city: "Oklahoma City",
     name: "Thunder",
     abv: "OKC",
@@ -168,7 +168,7 @@ export const teams = [
     color: "#007BC5",
   },
   {
-    id: "magic",
+    id: "22",
     city: "Orlando",
     name: "Magic",
     abv: "ORL",
@@ -176,7 +176,7 @@ export const teams = [
     color: "#004FB9",
   },
   {
-    id: "76ers",
+    id: "23",
     city: "Philadelphia",
     name: "76ers",
     abv: "PHI",
@@ -184,7 +184,7 @@ export const teams = [
     color: "#EC1A34",
   },
   {
-    id: "suns",
+    id: "24",
     city: "Phoenix",
     name: "Suns",
     abv: "PHX",
@@ -192,7 +192,7 @@ export const teams = [
     color: "#FF6000",
   },
   {
-    id: "trail-blazers",
+    id: "25",
     city: "Portland",
     name: "Trail Blazers",
     abv: "POR",
@@ -200,7 +200,7 @@ export const teams = [
     color: "#E2383F",
   },
   {
-    id: "kings",
+    id: "26",
     city: "Sacramento",
     name: "Kings",
     abv: "SAC",
@@ -208,7 +208,7 @@ export const teams = [
     color: "#592C82",
   },
   {
-    id: "spurs",
+    id: "27",
     city: "San Antonio",
     name: "Spurs",
     abv: "SAS",
@@ -216,7 +216,7 @@ export const teams = [
     color: "#C4CED4",
   },
   {
-    id: "raptors",
+    id: "28",
     city: "Toronto",
     name: "Raptors",
     abv: "TOR",
@@ -224,7 +224,7 @@ export const teams = [
     color: "#BD1B21",
   },
   {
-    id: "jazz",
+    id: "29",
     city: "Utah",
     name: "Jazz",
     abv: "UTA",
@@ -232,7 +232,7 @@ export const teams = [
     color: "#4E008E",
   },
   {
-    id: "wizards",
+    id: "30",
     city: "Washington",
     name: "Wizards",
     abv: "WAS",

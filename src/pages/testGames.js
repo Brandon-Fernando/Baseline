@@ -84,3 +84,13 @@ export function formatDate(date) {
 
   return `${year}-${month}-${day}`;
 }
+
+
+export function getFavoriteGame(teams) {
+
+//   ?team_ids[]=1
+// &team_ids[]=2
+// &start_date=2026-11-03
+// &end_date=2026-11-17
+// &per_page=100
+}

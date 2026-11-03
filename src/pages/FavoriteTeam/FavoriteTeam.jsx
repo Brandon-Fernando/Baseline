@@ -31,27 +31,6 @@ const FavoriteTeam = () => {
     setSaved(false);
   };
 
-  // const handleSave = async () => {
-  //   if (loading) return;
-
-  //   setLoading(true);
-  //   setError("");
-  //   setSaved(false);
-
-  //   try {
-  //     await saveFavoriteTeams(favTeams);
-  //     setSaved(true);
-
-  //     // Navigate to your next page here if needed.
-  //   } catch (err) {
-  //     setError(
-  //       err.message || "Your favorite teams could not be saved."
-  //     );
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleSave = () => {
     if (loading) return;
 

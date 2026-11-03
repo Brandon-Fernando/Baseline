@@ -1,6 +1,12 @@
 
 
 const FavoriteGames = () => {
+  const favoriteTeams = JSON.parse(
+    localStorage.getItem("favoriteTeams") || "[]"
+  );
+
+  console.log(favoriteTeams)
+
 
   return(
     // {/* FAVORITE TEAM  */}

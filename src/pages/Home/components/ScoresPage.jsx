@@ -80,7 +80,6 @@ const ScoresPage = () => {
       />
 
       {/* ALL SCORES  */}
-      {/* <GameCard /> */}
       {games.length > 0 && (
         <div className="games-card-container">
           {sortedGames.map((game) => (

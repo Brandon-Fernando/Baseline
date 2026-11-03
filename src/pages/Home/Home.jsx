@@ -27,6 +27,8 @@ const Home = () => {
         Array.isArray(saved) &&
         saved.length > 0 && 
         saved.every((id) => typeof id === "string");
+
+        
     } catch (error) {
       console.error(error)
     }

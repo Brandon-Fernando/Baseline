@@ -16,8 +16,6 @@ const GameCard = ({game, home, away}) => {
   const isFinal = game.status_state === "final";
   const isHalftime = game.status?.trim().toLowerCase() === "halftime";
 
-  console.log(home.home_team_score)
-
   function getGameLabel(game) {
     const status = game.status?.trim() || "";
     const time = game.time?.trim() || "";
@@ -43,9 +41,7 @@ const GameCard = ({game, home, away}) => {
     // Otherwise, preserve the API's status text.
     const hasClock = /^\d+:\d{2}(?:\.\d+)?$/.test(time);
 
-    return hasClock
-      ? `${status || "Live"} · ${time}`
-      : status || "Time unavailable";
+    return hasClock ? time : status || "Time unavailable";
   }
 
   return(
@@ -58,26 +54,20 @@ const GameCard = ({game, home, away}) => {
       </div>
 
       {/* TIME INFO  */}
-      {/* <div className="game-card-times"> */}
-        {/* <span>{formatTime(game.datetime)}</span> */}
-
-        {/* <span>{game.status}</span> */}
-
-        {/* <span>{getGameLabel(game)}</span> */}
-
-      {/* </div> */}
-
       <div className="score-time-container">
         {/* HOME SCORE  */}
         {!isScheduled && (
           <span className="game-score">{game.home_team_score}</span>
         )}
-
+        
+        {isHalftime && (
+          <span>halftime</span>
+        )}
         <div className="game-status">
           <span className={`game-status-main ${isScheduled ? "scheduled" : ""}`}>{getGameLabel(game)}</span>
 
-          {isLive && (
-            <span className="time">{game.time}</span>
+          {(isLive && !game.time.startsWith("END")) && (
+            <span className="time"> {game.time?.replace(/^Q[1-4]\s*[·:\-]?\s*/i, "").trim()}</span>
           )}
         </div>
         
