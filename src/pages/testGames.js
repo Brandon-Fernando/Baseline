@@ -85,12 +85,44 @@ export function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
+const today = new Date();
+const nextFiveDays = new Date();
+nextFiveDays.setDate(nextFiveDays.getDate() + 5);
 
-export function getFavoriteGame(teams) {
+export async function getFavoriteGame(teams, startDate, endDate) {
+  const params = new URLSearchParams({
+    start_date: formatDate(startDate),
+    end_date: formatDate(endDate),
+    per_page: "100",
+  });
 
-//   ?team_ids[]=1
-// &team_ids[]=2
-// &start_date=2026-11-03
-// &end_date=2026-11-17
-// &per_page=100
+  teams.forEach((teamId) => {
+    params.append("team_ids[]", String(teamId));
+  });
+
+  // return fetch(`${BASE_URL}/games?${params.toString()}`);
+  const response = await fetch(
+    `https://api.balldontlie.io/v1/games?${params}`,
+    {
+      headers: {
+        Authorization: import.meta.env.VITE_BALLDONTLIE_API_KEY,
+      },
+    }
+  );
+
+  const result = await response.json();
+  const sortedGames = [...result.data].sort(
+    (a, b) => new Date(a.datetime) - new Date(b.datetime)
+  );
+
+  return teams.map((teamId) => ({
+    teamId,
+    game: sortedGames.find(
+      (game) =>
+        new Date(game.datetime) > new Date() &&
+        (game.home_team.id === Number(teamId) ||
+          game.visitor_team.id === Number(teamId))
+    ) ?? null,
+  }));
+
 }

@@ -60,11 +60,12 @@ const GameCard = ({game, home, away}) => {
           <span className="game-score">{game.home_team_score}</span>
         )}
         
-        {isHalftime && (
-          <span>halftime</span>
-        )}
+        
         <div className="game-status">
-          <span className={`game-status-main ${isScheduled ? "scheduled" : ""}`}>{getGameLabel(game)}</span>
+          {game.time !== "Half" && (
+            <span className={`game-status-main ${isScheduled ? "scheduled" : ""}`}>{getGameLabel(game)}</span>
+          )}
+          
 
           {(isLive && !game.time.startsWith("END")) && (
             <span className="time"> {game.time?.replace(/^Q[1-4]\s*[·:\-]?\s*/i, "").trim()}</span>

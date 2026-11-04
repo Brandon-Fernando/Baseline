@@ -28,6 +28,12 @@ body {
     url("./fonts/Rota-Bold.otf") format("opentype");
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* BUTTON  */
 .button{
   width: 100%;

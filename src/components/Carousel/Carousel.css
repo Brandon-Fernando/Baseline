@@ -1,0 +1,81 @@
+.carousel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.card-slider {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  margin: 0 1rem;
+}
+
+.card{
+  /* width: 100%; */
+  border: 1px solid red;
+  margin: 0.2rem;
+  height: 4rem;
+  display: flex;
+}
+
+
+
+.favorite-team-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card-slider::-webkit-scrollbar {
+  display: none;
+}
+
+
+.card-slider > .card {
+  flex: 0 0 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  border: 1px solid red;
+  margin: 1rem;
+  height: 4rem;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.dot.active::before {
+  background: #222;
+}

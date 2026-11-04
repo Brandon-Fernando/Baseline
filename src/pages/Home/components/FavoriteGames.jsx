@@ -1,45 +1,69 @@
-
+import { formatDate, getFavoriteGame } from "../../testGames";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Carousel from "../../../components/Carousel/Carousel";
 
 const FavoriteGames = () => {
+  const [favGame, setFavGame] = useState([]);
   const favoriteTeams = JSON.parse(
     localStorage.getItem("favoriteTeams") || "[]"
   );
+  
+  const navigate = useNavigate();
 
-  console.log(favoriteTeams)
+  // useEffect(() => {
+  //   if(favoriteTeams.length === 0){
+  //     return;
+  //   }
+
+  //   async function testGames() {
+  //     const favoriteTeams = JSON.parse(
+  //       localStorage.getItem("favoriteTeams") || "[]"
+  //     );
+
+  //     const today = new Date();
+  //     const endDate = new Date(today);
+  //     endDate.setDate(endDate.getDate() + 4);
+
+  //     const data = await getFavoriteGame(
+  //       favoriteTeams,
+  //       today,
+  //       endDate
+  //     );
+      
+  //     setFavGame(data)
+  //   }
+    
+  //   testGames().catch(console.error);
+  // }, []);
+
+  if(favoriteTeams.length === 0){
+    return(
+      <div className="choose-team-card">
+        <div 
+          className="no-team-gradient"
+        />
+
+        <span>Choose the teams you want to follow.</span>
+
+        <div className="choose-button-container">
+          <button 
+            className="choose-button button light"
+            onClick={() => navigate("/favorite-team")}
+          >
+            Choose Now
+          </button>
+        </div>
+       
+      </div>
+    )
+  }
+
+  // console.log(favGame.game)
 
 
   return(
-    // {/* FAVORITE TEAM  */}
-    <div className="favorite-team-card">
-      <div 
-        className="fav-team-card-gradient"
-      />
-      {/* FAVORITE TEAM  */}
-      <div className="team-sides">
-        <img src="/NBA-Teams/miami_heat.png" alt="fav-team" className="fav-team-logo"/>
-
-        <span className="fav-team-names">Heat</span>
-        
-        <span className="record">1-4</span>
-      </div>
-      
-      {/* TIME  */}
-      <div className="fav-card-time">
-        <span className="day-qtr">Today</span>
-        <span className="time">12:00 PM</span>
-      </div>
-
-      <span className="at-vs">@</span>
-
-      {/* OPPOSING TEAM  */}
-      <div className="team-sides">
-        <img src="/NBA-Teams/golden_state_warriors.png" alt="opposing-team" className="fav-team-logo"/>
-
-        <span className="fav-team-names">Warriors</span>
-
-        <span className="record">1-4</span>
-      </div>
-    </div>
+    <Carousel />
   )
 }
 
