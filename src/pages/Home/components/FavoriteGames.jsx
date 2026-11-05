@@ -4,38 +4,38 @@ import { useNavigate } from "react-router-dom";
 import Carousel from "../../../components/Carousel/Carousel";
 
 const FavoriteGames = () => {
-  const [favGame, setFavGame] = useState([]);
+  const [favGames, setFavGames] = useState([]);
   const favoriteTeams = JSON.parse(
     localStorage.getItem("favoriteTeams") || "[]"
   );
   
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if(favoriteTeams.length === 0){
-  //     return;
-  //   }
+  useEffect(() => {
+    if(favoriteTeams.length === 0){
+      return;
+    }
 
-  //   async function testGames() {
-  //     const favoriteTeams = JSON.parse(
-  //       localStorage.getItem("favoriteTeams") || "[]"
-  //     );
+    async function testGames() {
+      const favoriteTeams = JSON.parse(
+        localStorage.getItem("favoriteTeams") || "[]"
+      );
 
-  //     const today = new Date();
-  //     const endDate = new Date(today);
-  //     endDate.setDate(endDate.getDate() + 4);
+      const today = new Date();
+      const endDate = new Date(today);
+      endDate.setDate(endDate.getDate() + 4);
 
-  //     const data = await getFavoriteGame(
-  //       favoriteTeams,
-  //       today,
-  //       endDate
-  //     );
+      const data = await getFavoriteGame(
+        favoriteTeams,
+        today,
+        endDate
+      );
       
-  //     setFavGame(data)
-  //   }
+      setFavGames(data)
+    }
     
-  //   testGames().catch(console.error);
-  // }, []);
+    testGames().catch(console.error);
+  }, []);
 
   if(favoriteTeams.length === 0){
     return(
@@ -63,7 +63,9 @@ const FavoriteGames = () => {
 
 
   return(
-    <Carousel />
+    <Carousel 
+      favGames={favGames}
+    />
   )
 }
 

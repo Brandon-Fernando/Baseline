@@ -2,8 +2,10 @@ import FavoriteGameCard from "../../pages/Home/components/FavoriteGameCard";
 import "./Carousel.css"
 import { useRef, useState } from "react";
 
-const Carousel = () => {
+const Carousel = ({favGames}) => {
   const cards = ["asdf", ""]
+
+  console.log(favGames)
 
   const sliderRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -26,8 +28,8 @@ const Carousel = () => {
             setActive(Math.round(slider.scrollLeft / slider.clientWidth));
           }}
         >
-        {cards.map((card) => (
-          <div className="carousel-slide" key={card}>
+        {favGames.map((game) => (
+          <div className="carousel-slide" key={game.teamId}>
             {/* <FavoriteGameCard /> */}
             {/* <div className="card" key={card}> */}
               <FavoriteGameCard />
