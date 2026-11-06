@@ -62,7 +62,7 @@ Amplify.configure({
   },
 });
 
-console.log(
-  "Active Cognito configuration:",
-  Amplify.getConfig().Auth?.Cognito
-);
+// console.log(
+//   "Active Cognito configuration:",
+//   Amplify.getConfig().Auth?.Cognito
+// );

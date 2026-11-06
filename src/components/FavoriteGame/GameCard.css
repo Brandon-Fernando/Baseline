@@ -16,7 +16,7 @@
 
 
 .fav-card-gradient-wrapper{
-   background: linear-gradient(to right, var(--home-color), #424242, var(--away-color));
+  background: linear-gradient(to right, var(--home-color), #424242, var(--away-color));
   width: 100%;
   position: absolute;
   inset: 0;
@@ -27,7 +27,7 @@
   border-radius: 40px;
   display: flex;
   overflow: hidden;
-
+  
 }
 
 .gradient-home-team{

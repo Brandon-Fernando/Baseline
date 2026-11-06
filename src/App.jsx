@@ -6,6 +6,7 @@ import Home from './pages/Home/Home'
 import SignIn from './pages/UserAuth/SignIn'
 import FavoriteTeam from './pages/FavoriteTeam/FavoriteTeam'
 import Layout from './components/Layout/Layout'
+import Game from './pages/Game/Game'
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
       <Route path="favorite-team" element={<FavoriteTeam />}/> */}
       <Route element={<Layout />}>
         <Route path="/" element={<Home />}/>
+
+        <Route path="/game" element={<Game />} />
       </Route>
 
       <Route path="favorite-team" element={<FavoriteTeam />}/> 
