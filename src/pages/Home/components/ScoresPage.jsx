@@ -15,40 +15,40 @@ const ScoresPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let ignore = false;
-    let timeoutId;
+  // useEffect(() => {
+  //   let ignore = false;
+  //   let timeoutId;
 
-    setLoading(true);
-    setError(null);
+  //   setLoading(true);
+  //   setError(null);
 
-    async function refreshGames() {
-      try {
-        const data = await getGamesByDate(chosenDate);
+  //   async function refreshGames() {
+  //     try {
+  //       const data = await getGamesByDate(chosenDate);
 
-        if (!ignore) {
-          setGames(data);
-          setError(null);
-        }
-      } catch (err) {
-        if (!ignore) setError(err.message);
-      } finally {
-        if (!ignore) {
-          setLoading(false);
+  //       if (!ignore) {
+  //         setGames(data);
+  //         setError(null);
+  //       }
+  //     } catch (err) {
+  //       if (!ignore) setError(err.message);
+  //     } finally {
+  //       if (!ignore) {
+  //         setLoading(false);
 
-          // Fetch again 30 seconds after this request finishes.
-          timeoutId = setTimeout(refreshGames, 50_000);
-        }
-      }
-    }
+  //         // Fetch again 30 seconds after this request finishes.
+  //         timeoutId = setTimeout(refreshGames, 50_000);
+  //       }
+  //     }
+  //   }
 
-    refreshGames();
+  //   refreshGames();
 
-    return () => {
-      ignore = true;
-      clearTimeout(timeoutId);
-    };
-  }, [chosenDate]);
+  //   return () => {
+  //     ignore = true;
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, [chosenDate]);
 
   const statusOrder = {
     in_progress: 0,
