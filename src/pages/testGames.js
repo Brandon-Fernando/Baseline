@@ -1,57 +1,4 @@
-export async function testGames() {
-  const dateParts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(new Date());
-
-  const date = Object.fromEntries(
-    dateParts.map(({ type, value }) => [type, value])
-  );
-
-  const today = `${date.year}-${date.month}-${date.day}`;
-  const apiKey = import.meta.env.VITE_BALLDONTLIE_API_KEY;
-
-  if (!apiKey) {
-    throw new Error("Missing API key. Check .env.local and restart Vite.");
-  }
-
-  const params = new URLSearchParams({
-    "dates[]": today,
-    per_page: "100",
-  });
-
-  const response = await fetch(
-    `https://api.balldontlie.io/v1/games?${params}`,
-    {
-      headers: {
-        Authorization: apiKey,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`API request failed: ${response.status}`);
-  }
-
-  const result = await response.json();
-
-  console.log("Full API response:", result);
-  console.log("Games array:", result.data);
-
-  // console.table(
-  //   result.data.map((game) => ({
-  //     away: game.visitor_team.full_name,
-  //     home: game.home_team.full_name,
-  //     awayScore: game.visitor_team_score,
-  //     homeScore: game.home_team_score,
-  //     status: game.status,
-  //   }))
-  // );
-
-  return result.data;
-}
+import { teams } from "../data/team";
 
 export async function getGamesByDate(date) {
 
@@ -139,3 +86,54 @@ export async function getFavoriteGame(teams, startDate, endDate) {
 });
 
 }
+
+export function formatImg(team){
+  return team.toLowerCase().trim().replace(/\s+/g, "_");
+}
+
+export function getGradient(team){
+  const currentTeam = teams.find(
+    (t) => String(t.id) === String(team.id)
+  );
+
+  return currentTeam.color;
+}
+
+export function formatGameDate(date){
+  return new Date(`${date}T00:00:00`).toLocaleDateString("en-US", {
+    month: "short", 
+    day: "numeric",
+  }).toUpperCase();
+}
+
+
+
+export function getGameLabel(game) {
+  const status = game.status?.trim() || "";
+  const time = game.time?.trim() || "";
+
+  if (game.postponed) return "Postponed";
+
+  if(game.status_state === "final" || /^final/i.test(status)) {
+    return status || "Final";
+  }
+
+  if(
+    game.status_state === "scheduled" || 
+    (!game.status_state && game.period === 0)
+  ) {
+    return game.datetime ? formatTime(game.datetime) : status;
+  }
+
+  const hasClock = /^\d+:\d{2}(?:\.\d+)?$/.test(time);
+
+  return hasClock ? time : status || "Time unavailable";
+}
+
+
+function formatTime(time){
+    return new Date(time).toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  }

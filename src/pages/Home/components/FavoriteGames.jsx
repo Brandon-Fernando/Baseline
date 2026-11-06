@@ -1,7 +1,6 @@
 import { formatDate, getFavoriteGame } from "../../testGames";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Carousel from "../../../components/Carousel/Carousel";
 import GameCarousel from "../../../components/GameCarousel/GameCarousel";
 
 const FavoriteGames = () => {
@@ -12,32 +11,52 @@ const FavoriteGames = () => {
   
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if(favoriteTeams.length === 0){
-  //     return;
-  //   }
+  // FETCH FAVORITE TEAM GAMES (CURRENT OR FUTURE)
+  useEffect(() => {
+    let ignore = false;
+    let timeoutId;
 
-  //   async function testGames() {
-  //     const favoriteTeams = JSON.parse(
-  //       localStorage.getItem("favoriteTeams") || "[]"
-  //     );
+    const teams = JSON.parse(
+      localStorage.getItem("favoriteTeams") || "[]"
+    );
 
-  //     const today = new Date();
-  //     const endDate = new Date(today);
-  //     endDate.setDate(endDate.getDate() + 4);
+    if (teams.length === 0) return;
 
-  //     const data = await getFavoriteGame(
-  //       favoriteTeams,
-  //       today,
-  //       endDate
-  //     );
-      
-  //     setFavGames(data)
-  //   }
-    
-  //   testGames().catch(console.error);
-  // }, []);
+    async function refreshFavoriteGames() {
+      try {
+        const today = new Date();
+        const endDate = new Date(today);
+        endDate.setDate(endDate.getDate() + 4);
 
+        const data = await getFavoriteGame(
+          teams,
+          today,
+          endDate
+        );
+
+        if (!ignore) {
+          setFavGames(data);
+        }
+      } catch (err) {
+        if (!ignore) {
+          console.error("Failed to refresh favorite games:", err);
+        }
+      } finally {
+        if (!ignore) {
+          timeoutId = setTimeout(refreshFavoriteGames, 50_000);
+        }
+      }
+    }
+
+    refreshFavoriteGames();
+
+    return () => {
+      ignore = true;
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  // IF NO FAVORITE TEAM ASK USER TO CHOOSE ONE
   if(favoriteTeams.length === 0){
     return(
       <div className="choose-team-card">
@@ -60,14 +79,11 @@ const FavoriteGames = () => {
     )
   }
 
-  // console.log(favGame.game)
-
-
+  // HAS FAVORITE TEAM
   return(
-    // <Carousel 
-    //   favGames={favGames}
-    // />
-    <GameCarousel />
+    <GameCarousel 
+      favGames={favGames}
+    />
   )
 }
 

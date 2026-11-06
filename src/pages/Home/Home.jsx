@@ -43,57 +43,8 @@ const Home = () => {
 
     setCheckingFavorites(false);
   })
-
-  // function handleSaveTeams(teamIds) {
-  //   if(teamIds.length === 0) return;
-
-  //   try{
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(teamIds));
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-
-  //   setFavoriteTeams(teamIds);
-  // }
-
-
-
-
-  // useEffect(() => {
-  //   let active = true;
-
-  //   async function loadGames() {
-  //     try {
-  //       const data = await getTodaysGames();
-
-  //       console.log(data);
-
-  //       if (active) setGames(data);
-  //     } catch (err) {
-  //       if (active) setError(err.message);
-  //     } finally {
-  //       if (active) setLoading(false);
-  //     }
-  //   }
-
-  //   loadGames();
-
-  //   return () => {
-  //     active = false;
-  //   };
-  // }, []);
-
-  // if (loading) return <p>Loading games...</p>;
-  // if (error) return <p>{error}</p>;
-
-
-
+  
   return (
-    // <div>
-    //   {/* Temporary: inspect the data while building your page */}
-    //   {/* <pre>{JSON.stringify(games, null, 2)}</pre> */}
-    // </div>
-
     <ScoresPage />
   );
 };
