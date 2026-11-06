@@ -1,0 +1,135 @@
+
+/* .fav-card-container{
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 10rem;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  position: relative;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 40px;
+  box-sizing: border-box;
+  height: 10rem;
+} */
+
+.fav-card-container {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 10rem;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 40px;
+  isolation: isolate;
+}
+
+
+.fav-card-gradient-wrapper{
+  background: linear-gradient(to right, #C8102E, #424242, #1A64B7);
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 40%;
+  border-radius: 40px;
+  display: flex;
+  overflow: hidden;
+
+}
+
+.gradient-home-team{
+  top: -1rem;
+  left: -3rem;
+  position: absolute;
+  height: 120%;
+  filter: blur(5px);
+  opacity: 0.4;
+}
+
+.gradient-away-team{
+  top: -1rem;
+  right: -3rem;
+  position: absolute;
+  height: 120%;
+  filter: blur(5px);
+  opacity: 0.4;
+}
+
+/* .date-qtr{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+} */
+/* .card-teams {
+  flex: 1;
+  min-width: 0;
+}
+
+ .team-abr-img{
+  display: flex;
+ }
+
+ .team-img{
+  width: 2rem;
+ }
+
+
+.date-qtr{
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.card-subtitle{
+  font-family: "Rota-Bold";
+  color: #9A9FAD;
+  font-size: 10px;
+}
+
+.card-title{
+  font-family: "Moderniz";
+  color: #d9d9d9;
+  font-size: 10px;
+} */
+
+
+.card-teams {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.team-abr-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.team-img {
+  width: 2rem;
+  height: auto;
+}
+
+.date-qtr {
+  flex: 0 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

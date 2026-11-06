@@ -19,44 +19,41 @@
   -webkit-backdrop-filter: blur(2px);
   border-radius: 40px;
   box-sizing: border-box;
+  height: 10rem;
 
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
 }
-
-.favorite-team-card {
-  width: 100%;
-  min-width: 0;
-}
-
-
-
+  
 
 .fav-team-card-gradient{
-  background: linear-gradient(to right, #C8102E, #1A64B7);
+  background: linear-gradient(to right, var(--home-color), var(--away-color));
   width: 100%;
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  opacity: 28%;
+  opacity: 24%;
 
 }
 
 .fav-team-logo{
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .team-sides{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-family: "Rota-Bold";
   color: rgb(217 217 217 / 0.6);
   font-size: 10px;
+  height: 100%;
+  /* width: 3rem; */
 }
 
 .fav-team-names{
@@ -68,6 +65,22 @@
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  height: 100%;
+}
+
+.fav-card-time.scheduled{
+  justify-content: center;
+}
+
+.game-status-fav.scheduled{
+  font-family: "Moderniz";
+  font-size: 0.8rem;
+}
+
+.game-status-fav{
+  font-family: "Rota-Extra-Bold";
+  color: #d9d9d9;
+  font-size: 13px;
 }
 
 .day-qtr{

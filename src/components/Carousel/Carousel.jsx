@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 const Carousel = ({favGames}) => {
   const cards = ["asdf", ""]
 
-  console.log(favGames)
+  // console.log(favGames)
 
   const sliderRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -32,13 +32,15 @@ const Carousel = ({favGames}) => {
           <div className="carousel-slide" key={game.teamId}>
             {/* <FavoriteGameCard /> */}
             {/* <div className="card" key={card}> */}
-              <FavoriteGameCard />
+              <FavoriteGameCard 
+                game={game.game}
+              />
             {/* </div> */}
           </div>
         ))}
       </div>
       
-    {cards.length > 1 && (
+    {favGames.length > 1 && (
       <div className="slider-dots" aria-label="Choose a card">
         {cards.map((card, index) => (
           <button

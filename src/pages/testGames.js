@@ -115,16 +115,27 @@ export async function getFavoriteGame(teams, startDate, endDate) {
     (a, b) => new Date(a.datetime) - new Date(b.datetime)
   );
 
-  // console.log("asdf", sortedGames)
+  console.log("asdf", sortedGames)
 
-  return teams.map((teamId) => ({
+  return teams.map((teamId) => {
+  const teamGames = sortedGames.filter(
+    (game) =>
+      game.home_team.id === Number(teamId) ||
+      game.visitor_team.id === Number(teamId)
+  );
+
+  const liveGame = teamGames.find(
+    (game) => game.status_state === "in_progress"
+  );
+
+  const nextGame = teamGames.find(
+    (game) => game.status_state === "scheduled"
+  );
+
+  return {
     teamId,
-    game: sortedGames.find(
-      (game) =>
-        new Date(game.datetime) > new Date() &&
-        (game.home_team.id === Number(teamId) ||
-          game.visitor_team.id === Number(teamId))
-    ) ?? null,
-  }));
+    game: liveGame ?? nextGame ?? null,
+  };
+});
 
 }

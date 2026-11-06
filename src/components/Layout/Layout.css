@@ -2,12 +2,14 @@
   height: 100dvh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr); /* add this */
   overflow: hidden;
 }
 
 .page-area {
   position: relative;
   min-height: 0;
+  min-width: 0; /* add this */
 }
 
 .page-scroll {
@@ -21,7 +23,8 @@
 }
 
 .page-content {
-  padding: 3rem 2rem 2rem;
+  padding: 3rem 1rem 1rem;
+  box-sizing: border-box;
 }
 
 .header-fade {

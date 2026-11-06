@@ -1,0 +1,35 @@
+.game-carousel-container {
+  width: calc(100% + 2rem);
+  margin-inline: -1.03rem;
+  min-width: 0;
+}
+
+.game-slider {
+  display: flex;
+  gap: 1rem;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: none;
+}
+
+.temp-game,
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 10rem;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  margin: 0;
+}
+
+.temp-game {
+  border: 1px solid blue;
+  display: flex;
+  width: 100%;
+}
