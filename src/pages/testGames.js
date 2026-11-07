@@ -24,6 +24,39 @@ export async function getGamesByDate(date) {
   return result.data;
 }
 
+
+export async function getGameByDate(date){
+  const today = formatDate(new Date());
+  
+  const url = today === date 
+    ? `/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json`
+    : `/nba-stats/stats/scoreboardv3?GameDate=${date}&LeagueID=00`
+
+  const response = await fetch(url);
+
+  console.log("HTTP status:", response.status);
+
+  const body = await response.text();
+
+  if(!response.ok) {
+    console.error(body);
+    return;
+  }
+
+  const data = JSON.parse(body)
+  console.log(data)
+  // console.log(data.scoreboard.games)
+  return data.scoreboard.games;
+}
+
+
+
+
+
+
+
+
+
 export function formatDate(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");

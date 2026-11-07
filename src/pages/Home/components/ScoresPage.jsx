@@ -3,6 +3,7 @@ import CalendarWeek from "./CalendarWeek";
 import FavoriteGames from "./FavoriteGames";
 import GameCard from "./GameCard";
 import { getGamesByDate } from "../../testGames";
+import { getGameByDate } from "../../testGames";
 
 const ScoresPage = () => {
   const [chosenDate, setChosenDate] = useState(() =>
@@ -15,57 +16,51 @@ const ScoresPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   let ignore = false;
-  //   let timeoutId;
+  useEffect(() => {
+    let ignore = false;
+    let timeoutId;
 
-  //   setLoading(true);
-  //   setError(null);
+    setLoading(true);
+    setError(null);
 
-  //   async function refreshGames() {
-  //     try {
-  //       const data = await getGamesByDate(chosenDate);
+    async function refreshGames() {
+      try {
+        const data = await getGameByDate(chosenDate);
 
-  //       if (!ignore) {
-  //         setGames(data);
-  //         setError(null);
-  //       }
-  //     } catch (err) {
-  //       if (!ignore) setError(err.message);
-  //     } finally {
-  //       if (!ignore) {
-  //         setLoading(false);
+        if (!ignore) {
+          setGames(data);
+          setError(null);
+        }
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) {
+          setLoading(false);
 
-  //         // Fetch again 30 seconds after this request finishes.
-  //         timeoutId = setTimeout(refreshGames, 50_000);
-  //       }
-  //     }
-  //   }
+          // Fetch again 30 seconds after this request finishes.
+          timeoutId = setTimeout(refreshGames, 30_000);
+        }
+      }
+    }
 
-  //   refreshGames();
+    refreshGames();
 
-  //   return () => {
-  //     ignore = true;
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, [chosenDate]);
+    return () => {
+      ignore = true;
+      clearTimeout(timeoutId);
+    };
+  }, [chosenDate]);
 
   const statusOrder = {
-    in_progress: 0,
-    scheduled: 1,
-    delayed: 2,
-    suspended: 3,
-    postponed: 4,
-    canceled: 5,
-    abandoned: 6,
-    unknown: 7,
-    final: 8,
+    2: 0, // Live first
+    1: 1, // Upcoming next
+    3: 2, // Final last
   };
 
   const sortedGames = [...games].sort((a, b) => {
     return (
-      (statusOrder[a.status_state] ?? 7) -
-      (statusOrder[b.status_state] ?? 7)
+      (statusOrder[a.gameStatus] ?? 3) -
+      (statusOrder[b.gameStatus] ?? 3)
     );
   });
 
@@ -84,10 +79,10 @@ const ScoresPage = () => {
         <div className="games-card-container">
           {sortedGames.map((game) => (
             <GameCard
-              key={game.id}
+              key={game.gameId}
               game={game}
-              home={game.home_team}
-              away={game.visitor_team}
+              home={game.homeTeam}
+              away={game.awayTeam}
             />
           ))}
         </div>

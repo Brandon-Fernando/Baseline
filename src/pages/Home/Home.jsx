@@ -43,29 +43,7 @@ const Home = () => {
 
     setCheckingFavorites(false);
   })
-
-
-
   
-  useEffect(() => {
-  async function loadScores() {
-    const today = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "America/New_York",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-}).format(new Date());
-
-const response = await fetch(
-  `/sports-api/sports/basketball/leagues/nba/events?date=${today}`
-);
-
-const data = await response.json();
-console.log(data);
-  }
-
-  loadScores();
-}, []); // Empty array prevents requests on every render
 
   return (
     <ScoresPage />
