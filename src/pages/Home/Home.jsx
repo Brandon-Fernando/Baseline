@@ -4,6 +4,7 @@ import ScoresPage from "./components/ScoresPage";
 import "./Home.css"
 import FavoriteTeam from "../FavoriteTeam/FavoriteTeam";
 import { useNavigate } from "react-router-dom";
+import { getNextTeamGame } from "../testGames";
 
 const STORAGE_KEY = "favoriteTeams";
 
@@ -43,7 +44,14 @@ const Home = () => {
 
     setCheckingFavorites(false);
   })
+
   
+  // const test = async () => {
+  //   const game = await getNextTeamGame(1610612747); // Lakers
+  //   console.log(game)
+  // }
+
+  // test();
 
   return (
     <ScoresPage />

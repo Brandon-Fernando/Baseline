@@ -1,90 +1,81 @@
-import { formatDate, getFavoriteGame } from "../../testGames";
+import { getNextTeamGame } from "../../testGames";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameCarousel from "../../../components/GameCarousel/GameCarousel";
 
 const FavoriteGames = () => {
-  const [favGames, setFavGames] = useState([]);
-  const favoriteTeams = JSON.parse(
-    localStorage.getItem("favoriteTeams") || "[]"
-  );
-  
   const navigate = useNavigate();
 
-  // FETCH FAVORITE TEAM GAMES (CURRENT OR FUTURE)
-  // useEffect(() => {
-  //   let ignore = false;
-  //   let timeoutId;
+  const [teamIds] = useState(() =>
+    JSON.parse(localStorage.getItem("favoriteTeams") || "[]")
+  );
 
-  //   const teams = JSON.parse(
-  //     localStorage.getItem("favoriteTeams") || "[]"
-  //   );
+  const [games, setGames] = useState([]);
+  const [error, setError] = useState(null);
 
-  //   if (teams.length === 0) return;
+  useEffect(() => {
+    let cancelled = false;
+    let timer;
 
-  //   async function refreshFavoriteGames() {
-  //     try {
-  //       const today = new Date();
-  //       const endDate = new Date(today);
-  //       endDate.setDate(endDate.getDate() + 4);
+    async function loadGames() {
+      try {
+        const results = await Promise.all(
+          teamIds.map(async (teamId) => ({
+            teamId,
+            game: await getNextTeamGame(teamId),
+          }))
+        );
 
-  //       const data = await getFavoriteGame(
-  //         teams,
-  //         today,
-  //         endDate
-  //       );
+        if (!cancelled) {
+          setGames(results);
+          setError(null);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setError(error.message);
+        }
+      } finally {
+        if (!cancelled) {
+          timer = setTimeout(loadGames, 30_000);
+        }
+      }
+    }
 
-  //       if (!ignore) {
-  //         setFavGames(data);
-  //       }
-  //     } catch (err) {
-  //       if (!ignore) {
-  //         console.error("Failed to refresh favorite games:", err);
-  //       }
-  //     } finally {
-  //       if (!ignore) {
-  //         timeoutId = setTimeout(refreshFavoriteGames, 50_000);
-  //       }
-  //     }
-  //   }
+    if (teamIds.length > 0) {
+      loadGames();
+    }
 
-  //   refreshFavoriteGames();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [teamIds]);
 
-  //   return () => {
-  //     ignore = true;
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, []);
-
-  // IF NO FAVORITE TEAM ASK USER TO CHOOSE ONE
-  if(favoriteTeams.length === 0){
-    return(
+  if (teamIds.length === 0) {
+    return (
       <div className="choose-team-card">
-        <div 
-          className="no-team-gradient"
-        />
+        <div className="no-team-gradient" />
 
         <span>Choose the teams you want to follow.</span>
 
         <div className="choose-button-container">
-          <button 
+          <button
             className="choose-button button light"
             onClick={() => navigate("/favorite-team")}
           >
             Choose Now
           </button>
         </div>
-       
       </div>
-    )
+    );
   }
 
-  // HAS FAVORITE TEAM
-  return(
-    <GameCarousel 
-      favGames={favGames}
-    />
-  )
-}
+  return (
+    <>
+      {error && <p role="alert">{error}</p>}
+      <GameCarousel favGames={games} />
+    </>
+  );
+};
 
 export default FavoriteGames;

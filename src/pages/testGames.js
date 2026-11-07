@@ -25,30 +25,28 @@ export async function getGamesByDate(date) {
 }
 
 
-export async function getGameByDate(date){
+export async function getGameByDate(date) {
   const today = formatDate(new Date());
-  
-  const url = today === date 
-    ? `/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json`
-    : `/nba-stats/stats/scoreboardv3?GameDate=${date}&LeagueID=00`
 
-  const response = await fetch(url);
+  const url =
+    today === date
+      ? "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+      : `/nba-stats/stats/scoreboardv3?GameDate=${encodeURIComponent(date)}&LeagueID=00`;
 
-  console.log("HTTP status:", response.status);
+  try {
+    const response = await fetch(url);
 
-  const body = await response.text();
+    if (!response.ok) {
+      throw new Error(`NBA request failed: ${response.status}`);
+    }
 
-  if(!response.ok) {
-    console.error(body);
-    return;
+    const data = await response.json();
+    return data.scoreboard?.games ?? [];
+  } catch (error) {
+    console.error(error);
+    return [];
   }
-
-  const data = JSON.parse(body)
-  console.log(data)
-  // console.log(data.scoreboard.games)
-  return data.scoreboard.games;
 }
-
 
 
 
@@ -125,17 +123,20 @@ export function formatImg(team){
 
 export function getGradient(team){
   const currentTeam = teams.find(
-    (t) => String(t.id) === String(team.id)
+    (t) => String(t.id) === String(team.teamId)
   );
 
   return currentTeam.color;
 }
 
-export function formatGameDate(date){
-  return new Date(`${date}T00:00:00`).toLocaleDateString("en-US", {
-    month: "short", 
-    day: "numeric",
-  }).toUpperCase();
+export function formatGameDate(date) {
+  return new Date(date)
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    })
+    .toUpperCase();
 }
 
 
@@ -169,3 +170,67 @@ function formatTime(time){
       minute: "2-digit",
     });
   }
+
+
+
+
+
+
+
+
+  export async function getTeamSchedule(teamId) {
+  const response = await fetch(
+    "/nba-live/static/json/staticData/scheduleLeagueV2_1.json"
+  );
+
+  if (!response.ok) {
+    throw new Error(`Schedule request failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  return data.leagueSchedule.gameDates
+    .flatMap((day) => day.games)
+    .filter(
+      (game) =>
+        String(game.homeTeam.teamId) === String(teamId) ||
+        String(game.awayTeam.teamId) === String(teamId)
+    );
+}
+
+export async function getNextTeamGame(teamId) {
+  const response = await fetch(
+    "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+  );
+
+  if (!response.ok) {
+    throw new Error(`Scoreboard request failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  const liveGame = data.scoreboard.games.find(
+    (game) =>
+      game.gameStatus === 2 &&
+      (String(game.homeTeam.teamId) === String(teamId) ||
+        String(game.awayTeam.teamId) === String(teamId))
+  );
+
+  if (liveGame) return liveGame;
+
+  const schedule = await getTeamSchedule(teamId);
+
+  return (
+    schedule
+      .filter(
+        (game) =>
+          game.gameStatus === 1 &&
+          new Date(game.gameDateTimeUTC).getTime() > Date.now()
+      )
+      .sort(
+        (a, b) =>
+          new Date(a.gameDateTimeUTC) -
+          new Date(b.gameDateTimeUTC)
+      )[0] ?? null
+  );
+}

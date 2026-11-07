@@ -29,6 +29,10 @@ export default defineConfig({
         target: "https://cdn.nba.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/nba-live/, ""),
+        headers: {
+          Referer: "https://www.nba.com/",
+          "User-Agent": "Mozilla/5.0",
+        },
       },
 
       "/nba-stats": {

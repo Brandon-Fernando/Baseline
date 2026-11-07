@@ -1,27 +1,32 @@
 import "./GameCard.css";
+import { teams } from "../../data/team";
 import { getGradient, formatImg, getGameLabel, formatGameDate } from "../../pages/testGames";
 
+function getImg(team){
+  const currentTeam = teams.find(
+    (t) => String(t.id) === String(team.teamId)
+  )
+
+  return currentTeam?.logo;
+}
+
 const GameCard = ({game}) => {
-  const home = game.home_team;
-  const away = game.visitor_team;
-  console.log(game)
+  const home = game.homeTeam;
+  const away = game.awayTeam;
 
   const homeGradient = getGradient(home);
   const awayGradient = getGradient(away);
 
-  const isScheduled = game.status_state === "scheduled";
-  const isLive = game.status_state === "in_progress";
-
-  const label = getGameLabel(game);
-  console.log(label);
+  const isScheduled = game.gameStatus === 1;
+  const isLive = game.gameStatus !== 1;
 
   const ScheduledGame = () => {
     return(
       <>
         <div className="date-qtr">
-          <span className="card-subtitle">{formatGameDate(game.date)}</span>
+          <span className="card-subtitle">{formatGameDate(game.gameDateEst)}</span>
 
-          <span className="card-title">{label}</span>
+          <span className="card-title">{game.gameStatusText}</span>
         </div>
       </>
     )
@@ -31,12 +36,7 @@ const GameCard = ({game}) => {
     return(
       <>
         <div className="date-qtr">
-          {(game.time !== "Half" && !game.time.startsWith("END")) &&(
-            <span className="card-subtitle">{getGameLabel(game)}</span>
-          )}
-         
-          {/* {!game.time.startsWith("END") && } */}
-          <span className="card-title">{game.time?.replace(/^Q[1-4]\s*[·:\-]?\s*/i, "").trim()}</span>
+          <span className="card-title">{game.gameStatusText}</span>
         </div>
       </>
     )
@@ -49,23 +49,23 @@ const GameCard = ({game}) => {
         className="fav-card-gradient-wrapper"
         style={{ "--home-color": homeGradient, "--away-color": awayGradient}}
       >
-        <img src={`/NBA-Teams/${formatImg(home.full_name)}.png`} alt="gradinent-team" className="gradient-home-team"/>
-        <img src={`/NBA-Teams/${formatImg(away.full_name)}.png`} alt="gradinent-team" className="gradient-away-team"/>
+        <img src={getImg(home)} alt="gradinent-team" className="gradient-home-team"/>
+        <img src={getImg(away)} alt="gradinent-team" className="gradient-away-team"/>
       </div>
 
       {/* TEAM  */}
       <div className={`card-teams ${isLive ? "live" : ""}`}>
         <div className="team-abr-img">
-          <span className="team-abr">{home.abbreviation}</span>
+          <span className="team-abr">{home.teamTricode}</span>
           <img 
-            src={`/NBA-Teams/${formatImg(home.full_name)}.png`}
+            src={getImg(home)}
             alt="HomeTeam" 
             className="team-img"
           />
         </div>
 
         {isLive && (
-          <span className="score">{game.home_team_score}</span>
+          <span className="score">{home.score}</span>
         )}
        
       </div>
@@ -80,16 +80,16 @@ const GameCard = ({game}) => {
 
       <div className={`card-teams ${isLive ? "live" : ""}`}>
         <div className="team-abr-img">
-          <span className="team-abr">{away.abbreviation}</span>
+          <span className="team-abr">{away.teamTricode}</span>
           <img 
-            src={`/NBA-Teams/${formatImg(away.full_name)}.png`}
+            src={getImg(away)}
             alt="HomeTeam" 
             className="team-img"
           />
         </div>
 
         {isLive && (
-          <span className="score">{game.visitor_team_score}</span>
+          <span className="score">{away.score}</span>
         )}
        
       </div>
