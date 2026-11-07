@@ -2,6 +2,7 @@ import { useState } from "react";
 import Score from "./components/Score";
 import ToggleBar from "./components/ToggleBar";
 import "./Game.css";
+import TeamBoxScore from "./components/TeamBoxScore";
 
 const OPTIONS = ["Heat", "Warriors", "Play By Play", "Team Comparison"];
 
@@ -22,6 +23,7 @@ const Game = () => {
       />
 
       {/* TOGGLE CONTENT  */}
+      <TeamBoxScore />
     </div>
   )
 }
