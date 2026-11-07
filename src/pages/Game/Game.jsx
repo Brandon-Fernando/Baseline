@@ -8,6 +8,27 @@ const OPTIONS = ["Heat", "Warriors", "Play By Play", "Team Comparison"];
 
 const Game = () => {
   const [option, setOption] = useState("Heat");
+
+
+  async function testPlayByPlay() {
+  const response = await fetch(
+    "/nba/static/json/liveData/playbyplay/playbyplay_0022600025.json"
+  );
+
+  console.log("HTTP status:", response.status);
+
+  const body = await response.text();
+
+  if (!response.ok) {
+    console.error(body);
+    return;
+  }
+
+  const data = JSON.parse(body);
+  console.table(data.game.actions);
+}
+
+testPlayByPlay().catch(console.error);
   
 
   return (
