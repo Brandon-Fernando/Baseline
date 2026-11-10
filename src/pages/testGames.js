@@ -26,26 +26,43 @@ export async function getGamesByDate(date) {
 
 
 export async function getGameByDate(date) {
-  const today = formatDate(new Date());
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/New_York",
+  }).format(new Date());
 
   const url =
     today === date
       ? "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
       : `/nba-stats/stats/scoreboardv3?GameDate=${encodeURIComponent(date)}&LeagueID=00`;
 
-  try {
-    const response = await fetch(url);
+  const started = performance.now();
+  const response = await fetch(url, { cache: "no-store" });
 
-    if (!response.ok) {
-      throw new Error(`NBA request failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.scoreboard?.games ?? [];
-  } catch (error) {
-    console.error(error);
-    return [];
+  if (!response.ok) {
+    throw new Error(`NBA request failed: ${response.status}`);
   }
+
+  const data = await response.json();
+  const games = data.scoreboard?.games ?? [];
+
+  console.log("Scoreboard request:", {
+    time: new Date().toLocaleTimeString(),
+    status: response.status,
+    age: response.headers.get("age"),
+    lastModified: response.headers.get("last-modified"),
+    cacheControl: response.headers.get("cache-control"),
+  });
+
+  console.table(
+    games.map((game) => ({
+      gameId: game.gameId,
+      home: game.homeTeam.score,
+      away: game.awayTeam.score,
+      clock: game.gameClock,
+    }))
+  );
+
+  return games;
 }
 
 
@@ -233,4 +250,15 @@ export async function getNextTeamGame(teamId) {
           new Date(b.gameDateTimeUTC)
       )[0] ?? null
   );
+}
+
+export function formatGameClock(clock) {
+  const match = clock?.match(/^PT(\d+)M(\d+(?:\.\d+)?)S$/);
+
+  if (!match) return "";
+
+  const minutes = Number(match[1]);
+  const seconds = Math.floor(Number(match[2]));
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }

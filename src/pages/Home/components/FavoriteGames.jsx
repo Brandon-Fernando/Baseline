@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameCarousel from "../../../components/GameCarousel/GameCarousel";
 
+
+
 const FavoriteGames = () => {
   const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ const FavoriteGames = () => {
         }
       } finally {
         if (!cancelled) {
-          timer = setTimeout(loadGames, 30_000);
+          timer = setTimeout(loadGames, 15_000);
         }
       }
     }

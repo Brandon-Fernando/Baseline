@@ -14,8 +14,8 @@ const Game = () => {
   const response = await fetch(
     // "/nba/static/json/liveData/playbyplay/playbyplay_0022600025.json"
     // "/nba/static/json/liveData/boxscore/boxscore_0022600191.json"
-    // "/nba/static/json/liveData/scoreboard/todaysScoreboard_00.json"
-    "/nba-stats/stats/scoreboardv3?GameDate=2026-11-5&LeagueID=00"
+    "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+    // "/nba-stats/stats/scoreboardv3?GameDate=2026-11-5&LeagueID=00"
     
   );
 

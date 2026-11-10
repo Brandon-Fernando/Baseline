@@ -276,6 +276,10 @@
 
 .game-card-status{
   width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 }
 
 .game-time-sched{

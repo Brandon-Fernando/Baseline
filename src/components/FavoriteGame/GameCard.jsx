@@ -1,6 +1,6 @@
 import "./GameCard.css";
 import { teams } from "../../data/team";
-import { getGradient, formatImg, getGameLabel, formatGameDate } from "../../pages/testGames";
+import { getGradient, formatImg, getGameLabel, formatGameDate, formatGameClock } from "../../pages/testGames";
 
 function getImg(team){
   const currentTeam = teams.find(
@@ -25,7 +25,7 @@ const GameCard = ({game}) => {
       <>
         <div className="date-qtr">
           <span className="card-subtitle">{formatGameDate(game.gameDateEst)}</span>
-
+          
           <span className="card-title">{game.gameStatusText}</span>
         </div>
       </>
@@ -35,9 +35,15 @@ const GameCard = ({game}) => {
   const LiveGame = () => {
     return(
       <>
-        <div className="date-qtr">
-          <span className="card-title">{game.gameStatusText}</span>
-        </div>
+        <div className={`date-qtr ${game.gameStatusText.startsWith("End") ? "end" : ""}`}>
+          <span className="card-subtitle">{game.gameStatusText}</span>
+
+          {!game.gameStatusText.startsWith("End") && (
+            <span className="card-title">
+              {formatGameClock(game.gameClock)}
+            </span>
+          )}  
+        </div>  
       </>
     )
   }

@@ -38,7 +38,7 @@ const ScoresPage = () => {
           setLoading(false);
 
           // Fetch again 30 seconds after this request finishes.
-          timeoutId = setTimeout(refreshGames, 30_000);
+          timeoutId = setTimeout(refreshGames, 15_000);
         }
       }
     }

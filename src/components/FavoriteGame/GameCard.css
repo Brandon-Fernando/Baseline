@@ -61,9 +61,11 @@
   align-items: center;
   height: 100%;
   /* justify-content: space-between; */
-  padding: 1rem 0;
+  padding: 1.3rem 0;
 
 }
+
+
 
 .card-teams.live{
   justify-content: space-between;
@@ -102,13 +104,17 @@
 
 
 .date-qtr {
-  width: 5rem;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
   background-color: transparent;
+}
+
+.date-qtr.end span{
+  font-size: 9px;
 }
 
 .card-title{
