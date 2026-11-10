@@ -64,6 +64,8 @@ const ScoresPage = () => {
     );
   });
 
+  console.log(games)
+
   return(
     <div className="scores-page-container">
       <FavoriteGames />

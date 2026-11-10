@@ -165,4 +165,11 @@
   font-family: "Moderniz";
   color: #d9d9d9;
   text-align: center;
+  margin-top: 1rem;
+}
+
+.player-box-title{
+  margin: 1rem 0;
+  font-family: "Rota-Bold";
+  color: #d9d9d9;
 }

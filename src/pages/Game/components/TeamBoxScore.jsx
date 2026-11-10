@@ -1,3 +1,4 @@
+import PlayerBoxScore from "../../../components/BoxScore/PlayerBoxScore";
 import TeamScore from "../../../components/BoxScore/TeamScore";
 
 
@@ -8,6 +9,10 @@ const TeamBoxScore = () => {
       <span className="team-main-title">Miami Heat</span>
 
       <TeamScore />
+
+      <span className="player-box-title">Starters</span>
+
+      <PlayerBoxScore />
     </div>
   )
 }
