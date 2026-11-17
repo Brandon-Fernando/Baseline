@@ -46,3 +46,246 @@
   background-color: rgba(217, 217, 217, 0.15);
   border-radius: 9px;
 }
+
+
+/* PLAYER BOX SCORE */
+/* .player-box-score{
+  background-color: rgba(58, 58, 58, .70);
+  width: 100%;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.player-box-score > .player-stats-wrapper:not(:last-child){
+  border-bottom: 1px solid #464646;
+}
+
+.player-box-score > .player-stats-wrapper:is(:last-child){
+  padding-bottom: 0;
+}
+
+.player-stats-wrapper{
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+
+.player-headshot-name{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.player-headshot{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50px;
+  background-color: rgba(157, 157, 157, 0.12);
+}
+
+.player-headshot-name span{
+  font-family: "Rota-Bold";
+  color: #d9d9d9;
+  font-size: 10px;
+}
+
+
+.player-stats {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+
+  padding-inline: 24px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 24px,
+    black calc(100% - 24px),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 24px,
+    black calc(100% - 24px),
+    transparent
+  );
+  gap: 1rem;
+}
+
+.player-stat-value{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ */
+
+ /* .player-box-score {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.player-scores-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 30px;
+  overscroll-behavior-x: none;
+  -webkit-mask-image: linear-gradient(
+    to left,
+     #3a3a3a,
+    transparent 3rem,
+  );
+
+  mask-image: linear-gradient(
+    to left,
+    #3a3a3a,
+    transparent 3rem,
+  );
+}
+
+.player-stats-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  min-width: 100%;
+  background-color: rgba(58, 58, 58, .70);
+}
+
+.player-headshot-name {
+  position: sticky;
+  left: 1rem;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 120px;
+  box-sizing: border-box;
+  padding: 1rem 0.5rem 1rem 0;
+
+}
+
+.player-headshot{
+  width: 2rem;
+  height: 2rem;
+  background-color: rgba(157, 157, 157, 0.12);
+  border-radius: 50px;
+}
+
+.player-stats {
+  display: flex;
+  flex: 0 0 auto;
+  overflow: visible;
+  padding: 1rem 0;
+  mask-image: none;
+  -webkit-mask-image: none;
+
+}
+
+.player-stat-value {
+  flex: 0 0 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-scores-scroll > .player-stats-wrapper:not(:last-child) {
+  border-bottom: 1px solid #464646;
+} */
+
+.player-box-score {
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.player-box-score::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2rem;
+  background: linear-gradient(to right, transparent, #373737);
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+.player-scores-scroll{
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 30px;
+  overscroll-behavior-x: none;
+  background-color: #373737;
+  
+
+}
+
+.player-stats-wrapper{
+  display: flex;
+  gap: 1rem;
+}
+
+.player-headshot-name{
+  display: flex;
+  align-items: center;
+  position: sticky;
+  left: 0;
+  flex-shrink: 0;
+  background-color: #373737;
+  padding: 1rem 0 1rem 1rem;
+  /* -webkit-mask-image: linear-gradient(
+    to right,
+    black calc(100% + 3rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black calc(100% + 3rem),
+    transparent 100%
+  ); */
+}
+
+.player-headshot-name {
+  z-index: 1;
+}
+
+.player-headshot-name::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 1.5rem;
+  background: linear-gradient(to right, #373737, transparent);
+  pointer-events: none;
+}
+
+.player-headshot{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50px;
+  background-color: rgba(157, 157, 157, 0.12);
+
+}
+
+.player-stats-wrapper{
+  display: flex;
+}
+
+
+.player-stats{
+  display: flex;
+  overflow: visible;
+  padding: 1rem 0;
+}

@@ -10,31 +10,31 @@ const Game = () => {
   const [option, setOption] = useState("Heat");
 
 
-  async function testPlayByPlay() {
-  const response = await fetch(
-    // "/nba/static/json/liveData/playbyplay/playbyplay_0022600025.json"
-    // "/nba/static/json/liveData/boxscore/boxscore_0022600191.json"
-    // "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
-    // "/nba-stats/stats/scoreboardv3?GameDate=2026-11-5&LeagueID=00"
-    "/nba-live/static/json/liveData/boxscore/boxscore_0022600203.json"
-  );
+//   async function testPlayByPlay() {
+//   const response = await fetch(
+//     // "/nba/static/json/liveData/playbyplay/playbyplay_0022600025.json"
+//     // "/nba/static/json/liveData/boxscore/boxscore_0022600191.json"
+//     // "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+//     // "/nba-stats/stats/scoreboardv3?GameDate=2026-11-5&LeagueID=00"
+//     "/nba-live/static/json/liveData/boxscore/boxscore_0022600203.json"
+//   );
 
-  console.log("HTTP status:", response.status);
+//   console.log("HTTP status:", response.status);
 
-  const body = await response.text();
+//   const body = await response.text();
 
-  if (!response.ok) {
-    console.error(body);
-    return;
-  }
+//   if (!response.ok) {
+//     console.error(body);
+//     return;
+//   }
 
-  const data = JSON.parse(body);
-  // console.log(data)
-  // console.table(data.game.actions);
-  console.log(data)
-}
+//   const data = JSON.parse(body);
+//   // console.log(data)
+//   // console.table(data.game.actions);
+//   console.log(data)
+// }
 
-testPlayByPlay().catch(console.error);
+// testPlayByPlay().catch(console.error);
   
 
   return (
