@@ -240,6 +240,12 @@
   /* gap: 1rem; */
   position: relative;
   gap: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.game-card-container:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .team-info-wrapper{

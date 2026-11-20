@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { teams } from "../../../data/team";
 import { formatGameClock } from "../../testGames";
 
@@ -14,7 +15,10 @@ const GameCard = ({game, home, away}) => {
 
 
   return(
-    <div className={`game-card-container ${game.gameStatus !== 1 ? "live" : ""}`}>
+    <Link 
+      className={`game-card-container ${game.gameStatus !== 1 ? "live" : ""}`}
+      to={`/game/${game.gameId}`}
+    >
       {/* HOME TEAM  */}
       <div className="team-info-wrapper">
         <div className="team-info">
@@ -62,7 +66,7 @@ const GameCard = ({game, home, away}) => {
         </div>
        
       </div>
-    </div>
+    </Link>
   )
 }
 

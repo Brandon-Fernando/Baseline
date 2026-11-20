@@ -1,40 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Score from "./components/Score";
 import ToggleBar from "./components/ToggleBar";
 import "./Game.css";
 import TeamBoxScore from "./components/TeamBoxScore";
+import { useParams } from "react-router-dom";
 
 const OPTIONS = ["Heat", "Warriors", "Play By Play", "Team Comparison"];
 
 const Game = () => {
+  const { gameId } = useParams();
   const [option, setOption] = useState("Heat");
+  const [game, setGame] = useState();
 
+  useEffect(() => {
+  const controller = new AbortController();
 
-//   async function testPlayByPlay() {
-//   const response = await fetch(
-//     // "/nba/static/json/liveData/playbyplay/playbyplay_0022600025.json"
-//     // "/nba/static/json/liveData/boxscore/boxscore_0022600191.json"
-//     // "/nba-live/static/json/liveData/scoreboard/todaysScoreboard_00.json"
-//     // "/nba-stats/stats/scoreboardv3?GameDate=2026-11-5&LeagueID=00"
-//     "/nba-live/static/json/liveData/boxscore/boxscore_0022600203.json"
-//   );
+  async function testPlayByPlay() {
+    try {
+      const response = await fetch(
+      `/nba-live/static/json/liveData/boxscore/boxscore_${gameId}.json`,
+        { signal: controller.signal }
+      );
 
-//   console.log("HTTP status:", response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
 
-//   const body = await response.text();
+      const data = await response.json();
+      setGame(data.game);
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error(error);
+      }
+    }
+  }
 
-//   if (!response.ok) {
-//     console.error(body);
-//     return;
-//   }
+  testPlayByPlay();
 
-//   const data = JSON.parse(body);
-//   // console.log(data)
-//   // console.table(data.game.actions);
-//   console.log(data)
-// }
-
-// testPlayByPlay().catch(console.error);
+  return () => controller.abort();
+}, []);
   
 
   return (
@@ -50,7 +54,7 @@ const Game = () => {
       />
 
       {/* TOGGLE CONTENT  */}
-      <TeamBoxScore />
+      {game && <TeamBoxScore game={game} />}
     </div>
   )
 }

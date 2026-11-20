@@ -2,7 +2,10 @@ import PlayerBoxScore from "../../../components/BoxScore/PlayerBoxScore";
 import TeamScore from "../../../components/BoxScore/TeamScore";
 
 
-const TeamBoxScore = () => {
+
+const TeamBoxScore = ({game}) => {
+  console.log(game)
+
   return(
     <div className="team-score-container">
       {/* MAIN TITLE  */}
@@ -12,7 +15,11 @@ const TeamBoxScore = () => {
 
       <span className="player-box-title">Starters</span>
 
-      <PlayerBoxScore />
+      <PlayerBoxScore homeTeam={game.homeTeam} type={"starters"}/>
+
+      <span className="player-box-title">Bench</span>
+
+      <PlayerBoxScore homeTeam={game.homeTeam} type={"bench"}/>
     </div>
   )
 }
